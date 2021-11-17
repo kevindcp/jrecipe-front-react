@@ -60,10 +60,10 @@ const RegisterForm: FC = () => {
             </FormControl>
             <Button 
                 onClick={handleSubmit(onSubmit)}
-                ml='60%'
-                mt='4'
-                colorScheme='blue'
-                disabled={!!errors.name|| !!errors.email || !!errors.password}
+                ml = '60%'
+                mt = '4'
+                colorScheme = 'blue'
+                disabled = {!!errors.name|| !!errors.email || !!errors.password}
             >
                 Sign Up
             </Button>

@@ -46,10 +46,10 @@ const LoginForm: FC = () => {
             </FormControl>
             <Button 
                 onClick={handleSubmit(onSubmit)}
-                ml='60%'
-                mt='4'
-                colorScheme='blue'
-                disabled={!!errors.email || !!errors.password}
+                ml = '60%'
+                mt = '4'
+                colorScheme = 'blue'
+                disabled = {!!errors.email || !!errors.password}
             >
                 Log In
             </Button>
