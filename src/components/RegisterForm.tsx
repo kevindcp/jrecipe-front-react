@@ -33,7 +33,7 @@ const RegisterForm: FC = () => {
                 <FormLabel>
                     Name
                 </FormLabel>
-                <Input type='name' placeholder='John Doe' {...register('name')}/>
+                <Input type='text' placeholder='John Doe' {...register('name')}/>
                 <FormErrorMessage>
                     {errors?.name?.message}
                 </FormErrorMessage>
