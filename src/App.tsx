@@ -1,8 +1,7 @@
 import { Flex } from "@chakra-ui/layout"
-function App() {
 
+const App = () => {
   return (
-    
     <Flex justify="center" h="100vh" w="100vw" align="center">
       Jrecipe
     </Flex>
