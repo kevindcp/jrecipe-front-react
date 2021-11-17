@@ -10,13 +10,15 @@ import { RegisterFormInputs } from "../types/formTypes";
 import { useForm } from "react-hook-form";
 import { yupResolver } from'@hookform/resolvers/yup';
 import validationRegister from "../validators/registerForm";
+import { FC } from "react";
 
-const RegisterForm = () => {
+const RegisterForm: FC = () => {
     const { register, handleSubmit , formState: {errors} } = useForm<RegisterFormInputs>({ 
         resolver: yupResolver(validationRegister),
         mode: 'onBlur',
     })
 
+    // placeholder
     const onSubmit = (values: RegisterFormInputs) => console.log(values);
 
     return (
