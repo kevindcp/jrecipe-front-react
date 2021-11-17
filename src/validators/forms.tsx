@@ -7,4 +7,9 @@ const validationRegister = yup.object().shape({
     password: yup.string().min(6).required(),
 })
 
-export default validationRegister
+const validationLogin = yup.object().shape({
+    email: yup.string().email().required(),
+    password: yup.string().min(6).required(),
+})
+
+export {validationRegister, validationLogin}

@@ -6,36 +6,22 @@ import {
     Input, 
     Button,
 } from "@chakra-ui/react";
-import { RegisterFormInputs } from "../types/forms";
+import { LoginFormInputs } from "../types/forms";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { validationRegister } from "../validators/forms";
+import { validationLogin } from "../validators/forms";
 import { FC } from "react";
 
-const RegisterForm: FC = () => {
-    const { register, handleSubmit , formState: {errors} } = useForm<RegisterFormInputs>({ 
-        resolver: yupResolver(validationRegister),
+const LoginForm: FC = () => {
+    const { register, handleSubmit , formState: {errors} } = useForm<LoginFormInputs>({ 
+        resolver: yupResolver(validationLogin),
         mode: 'onBlur',
     })
 
     // placeholder
-    const onSubmit = (values: RegisterFormInputs) => console.log(values);
-
+    const onSubmit = (values: LoginFormInputs) => console.log(values);
     return (
         <form>
-            <FormControl
-                isInvalid = {!!errors?.name?.message}
-                p = '2'
-                isRequired
-            >
-                <FormLabel>
-                    Name
-                </FormLabel>
-                <Input type='name' placeholder='John Doe' {...register('name')}/>
-                <FormErrorMessage>
-                    {errors?.name?.message}
-                </FormErrorMessage>
-            </FormControl>
             <FormControl
                 isInvalid = {!!errors?.email?.message}
                 p = '2'
@@ -63,12 +49,12 @@ const RegisterForm: FC = () => {
                 ml='60%'
                 mt='4'
                 colorScheme='blue'
-                disabled={!!errors.name|| !!errors.email || !!errors.password}
+                disabled={!!errors.email || !!errors.password}
             >
-                Sign Up
+                Log In
             </Button>
         </form>
     );
 }
 
-export default RegisterForm
+export default LoginForm

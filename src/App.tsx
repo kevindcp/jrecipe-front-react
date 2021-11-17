@@ -1,7 +1,11 @@
+import { Flex } from "@chakra-ui/layout"
 function App() {
 
   return (
-    <>Jrecipe</>
+    
+    <Flex justify="center" h="100vh" w="100vw" align="center">
+      Jrecipe
+    </Flex>
   )
 }
 
