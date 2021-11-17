@@ -21,7 +21,9 @@ const LoginForm: FC = () => {
     // placeholder
     const onSubmit = (values: LoginFormInputs) => console.log(values);
     return (
-        <form>
+        <FormControl
+            w = '15%'
+        >
             <FormControl
                 isInvalid = {!!errors?.email?.message}
                 p = '2'
@@ -46,14 +48,15 @@ const LoginForm: FC = () => {
             </FormControl>
             <Button 
                 onClick={handleSubmit(onSubmit)}
-                ml = '60%'
+                w = '94%'
+                ml = '2'
                 mt = '4'
                 colorScheme = 'blue'
                 disabled = {!!errors.email || !!errors.password}
             >
                 Log In
             </Button>
-        </form>
+        </FormControl>
     );
 }
 

@@ -22,7 +22,9 @@ const RegisterForm: FC = () => {
     const onSubmit = (values: RegisterFormInputs) => console.log(values);
 
     return (
-        <form>
+        <FormControl
+            w = '15%'
+        >
             <FormControl
                 isInvalid = {!!errors?.name?.message}
                 p = '2'
@@ -60,14 +62,15 @@ const RegisterForm: FC = () => {
             </FormControl>
             <Button 
                 onClick={handleSubmit(onSubmit)}
-                ml = '60%'
+                w = '94%'
+                ml = '2'
                 mt = '4'
                 colorScheme = 'blue'
                 disabled = {!!errors.name|| !!errors.email || !!errors.password}
             >
                 Sign Up
             </Button>
-        </form>
+        </FormControl>
     );
 }
 
