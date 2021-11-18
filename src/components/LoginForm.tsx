@@ -1,5 +1,4 @@
-import { 
-    Flex,
+import {
     FormControl, 
     FormLabel, 
     FormErrorMessage,
@@ -22,7 +21,8 @@ const LoginForm: FC = () => {
     const onSubmit = (values: LoginFormInputs) => console.log(values);
     return (
         <FormControl
-            w = '15%'
+        w = {['90vw', '80vw', '70vw', '60vw', '50vw','20vw']}
+        h = '50vh'
         >
             <FormControl
                 isInvalid = {!!errors?.email?.message}

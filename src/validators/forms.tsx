@@ -12,4 +12,11 @@ const validationLogin = yup.object().shape({
     password: yup.string().min(6).required(),
 })
 
-export {validationRegister, validationLogin}
+const validationRecipe = yup.object().shape({
+    title: yup.string().required(),
+    category: yup.string().required(),
+    ingrefients: yup.string(),
+    steps: yup.string(),
+})
+
+export {validationRegister, validationLogin, validationRecipe}
