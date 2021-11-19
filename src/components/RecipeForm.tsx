@@ -6,6 +6,8 @@ import {
     Button,
     Textarea,
     Select,
+    Image,
+    Box,
 } from "@chakra-ui/react";
 import { RecipeFormInputs } from "../types/forms";
 import { useForm } from "react-hook-form";
@@ -14,14 +16,15 @@ import { validationRecipe } from "../validators/forms";
 import { FC } from "react";
 
 const RecipeForm: FC = () => {
-    const { register, handleSubmit,formState: {errors}} = useForm({
+    const { register, handleSubmit ,formState: {errors}} = useForm({
         resolver: yupResolver(validationRecipe),
         mode: 'onBlur'
     })
 
-    // placeholder
-    const onSubmit = (values: RecipeFormInputs) => console.log(values);
-
+    const onSubmit = async (values: RecipeFormInputs) => {
+        console.log(values)
+    }
+    
     return (
         <FormControl 
             w = {['90vw', '80vw', '70vw', '60vw', '50vw','20vw']}
