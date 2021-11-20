@@ -16,9 +16,7 @@ const Menu: FC <MenuProps> = ({ isOpen, onClose }) => {
         <DrawerContent>
           <DrawerCloseButton/>
           <DrawerHeader borderBottomWidth="1px">
-            Basic Drawer
-            
-          
+            Jrecipe
           </DrawerHeader>
           <DrawerBody>
             <p>Categories</p>
