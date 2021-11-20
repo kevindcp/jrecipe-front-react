@@ -22,8 +22,8 @@ const RegisterForm: FC = () => {
 
     return (
         <FormControl
-        w = {['90vw', '80vw', '70vw', '60vw', '50vw','20vw']}
-        h = {['70vh','50vh']}
+            w = {['90vw', '80vw', '70vw', '60vw', '50vw','20vw']}
+            h = {['70vh','50vh']}
         >
             <FormControl
                 isInvalid = {!!errors?.name?.message}

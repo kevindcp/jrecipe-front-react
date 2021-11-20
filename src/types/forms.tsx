@@ -12,6 +12,8 @@ export type LoginFormInputs = {
 export type RecipeFormInputs = {
     title: string,
     category: string,
+    prepTime: number,
+    cookTime: number,
     ingredients: string,
     steps: string,
 }

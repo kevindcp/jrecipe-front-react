@@ -15,7 +15,9 @@ const validationLogin = yup.object().shape({
 const validationRecipe = yup.object().shape({
     title: yup.string().required(),
     category: yup.string().required(),
-    ingrefients: yup.string(),
+    prepTime: yup.number().required(),
+    cookTime: yup.number().required(),
+    ingredients: yup.string(),
     steps: yup.string(),
 })
 

@@ -6,8 +6,11 @@ import {
     Button,
     Textarea,
     Select,
-    Image,
-    Box,
+    NumberInput,
+    NumberInputField,
+    NumberInputStepper,
+    NumberIncrementStepper,
+    NumberDecrementStepper,
 } from "@chakra-ui/react";
 import { RecipeFormInputs } from "../types/forms";
 import { useForm } from "react-hook-form";
@@ -50,6 +53,35 @@ const RecipeForm: FC = () => {
                     <option>Sweets</option>
                     <option>Bakery</option>
                 </Select>
+            </FormControl>
+            <FormControl
+                isInvalid = {!!errors?.prepTime?.message}
+                p = '2'
+                isRequired
+            >
+                <FormLabel>Prep Time</FormLabel>
+                <FormLabel>Indicate Prep Time in minutes</FormLabel>
+                <NumberInput defaultValue={15} step={1}  >
+                    <NumberInputField {...register('prepTime')}/>
+                    <NumberInputStepper>
+                        <NumberIncrementStepper />
+                        <NumberDecrementStepper />
+                    </NumberInputStepper>
+                </NumberInput>
+            </FormControl>
+            <FormControl
+                isInvalid = {!!errors?.cooktime?.message}
+                p = '2'
+                isRequired
+            >
+                <FormLabel>Indicate Cook Time in minutes</FormLabel>
+                <NumberInput defaultValue={15} step={1}  >
+                    <NumberInputField {...register('cookTime')}/>
+                    <NumberInputStepper>
+                        <NumberIncrementStepper />
+                        <NumberDecrementStepper />
+                    </NumberInputStepper>
+                </NumberInput>
             </FormControl>
             <FormControl
                 isInvalid = {!!errors?.ingredients?.message}
