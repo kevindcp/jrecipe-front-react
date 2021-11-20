@@ -50,7 +50,7 @@ const App = () => {
     <Header/>
     
     <Flex justify="center" h="auto" w="100%" align="center" pt='20vh' pb='20vh' zIndex='0'>
-      <Grid columnGap='10px' rowGap='10px' gridAutoFlow='row' templateColumns='repeat(auto-fill, minmax(auto, 300px))' templateRows='repeat(auto-fill,300px)'  h="100%" w='100%' pl='10%'>
+      <Grid columnGap='10px' rowGap='10px' gridAutoFlow='row' templateColumns='repeat(auto-fill, minmax(auto, 300px))' templateRows='repeat(auto-fill,300px)'  h="100%" w='80%' justifyContent='center'>
         <RecipeCard {...recipe}/>
         <RecipeCard {...recipe2}/>
         <RecipeCard {...recipe}/>
