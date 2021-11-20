@@ -19,7 +19,7 @@ import Menu from "./Menu";
 const Header: FC = () =>{
     const { isOpen, onOpen, onClose } = useDisclosure()
     return (
-        <HStack backgroundColor='white' h='80px' w='100%' pos='fixed' zIndex='1' top='0' boxShadow='0 0 6px rgba(0, 0, 0, 1)' spacing='46vw'>
+        <HStack backgroundColor='white' h='80px' w='100%' pos='fixed' zIndex='1' top='0' boxShadow='0 0 6px rgba(0, 0, 0, 1)' spacing='50vw'>
             <HStack>
                 <Button 
                     leftIcon={<HamburgerIcon mt='1vh' h='3vh' w='auto' color='black'/>} 
