@@ -14,9 +14,9 @@ import {
     ChevronRightIcon
 } from '@chakra-ui/icons'
 import { FC } from 'react';
-import { Recipe } from '../types/recipes';
+import { RecipeContent } from '../types/recipes';
 
-const Recipe : FC <Recipe> = ({title, cookTime, prepTime, ingredients, steps, category, image}) => {
+const Recipe : FC <RecipeContent> = ({title, cookTime, prepTime, ingredients, steps, category, image}) => {
     const ingredientList = ingredients.split('/')
     const stepsList = steps.split('/')
     return (
@@ -33,7 +33,12 @@ const Recipe : FC <Recipe> = ({title, cookTime, prepTime, ingredients, steps, ca
                 </Badge>
             </Box>
             <Box w = '60vw'>
-                <Image src = {image} fallbackSrc= {'../assets/images/defaultImage.png'} w='100%' h='auto' borderRadius='10px'/>
+                <Image 
+                    src = {image} 
+                    fallbackSrc= {'../assets/images/defaultImage.png'} 
+                    w='100%' h='auto' 
+                    borderRadius='10px'
+                />
             </Box>
             <Box w = '60vw'>
                 <Text textAlign='left' fontSize='1.5em' fontWeight='400'> Cooking Time </Text>

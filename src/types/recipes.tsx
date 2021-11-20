@@ -1,4 +1,4 @@
-export type Recipe = {
+export type RecipeContent = {
     id: number,
     title: string,
     cookTime: number,

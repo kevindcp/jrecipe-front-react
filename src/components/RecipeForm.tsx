@@ -11,12 +11,13 @@ import {
     NumberInputStepper,
     NumberIncrementStepper,
     NumberDecrementStepper,
+    HStack
 } from '@chakra-ui/react';
 import { RecipeFormInputs } from '../types/forms';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { validationRecipe } from '../validators/forms';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 
 const RecipeForm: FC = () => {
     const { register, handleSubmit ,formState: {errors}} = useForm({
@@ -27,7 +28,9 @@ const RecipeForm: FC = () => {
     const onSubmit = async (values: RecipeFormInputs) => {
         console.log(values)
     }
-    
+    const [prepTime, setPrepTime] = useState("0")
+    const [cookTime, setCookTime] = useState("0")
+
     return (
         <FormControl 
             w = {['90vw', '80vw', '70vw', '60vw', '50vw','20vw']}
@@ -54,35 +57,38 @@ const RecipeForm: FC = () => {
                     <option>Bakery</option>
                 </Select>
             </FormControl>
-            <FormControl
-                isInvalid = {!!errors?.prepTime?.message}
-                p = '2'
-                isRequired
-            >
-                <FormLabel>Prep Time</FormLabel>
-                <FormLabel>Indicate Prep Time in minutes</FormLabel>
-                <NumberInput defaultValue={15} step={1}  >
-                    <NumberInputField {...register('prepTime')}/>
-                    <NumberInputStepper>
-                        <NumberIncrementStepper />
-                        <NumberDecrementStepper />
-                    </NumberInputStepper>
-                </NumberInput>
-            </FormControl>
-            <FormControl
-                isInvalid = {!!errors?.cooktime?.message}
-                p = '2'
-                isRequired
-            >
-                <FormLabel>Indicate Cook Time in minutes</FormLabel>
-                <NumberInput defaultValue={15} step={1}  >
-                    <NumberInputField {...register('cookTime')}/>
-                    <NumberInputStepper>
-                        <NumberIncrementStepper />
-                        <NumberDecrementStepper />
-                    </NumberInputStepper>
-                </NumberInput>
-            </FormControl>
+            <HStack>
+                <FormControl
+                    isInvalid = {!!errors?.prepTime?.message}
+                    p = '2'
+                    isRequired
+                    width='50%'
+                >
+                    <FormLabel>Prep time (min) </FormLabel>
+                    <NumberInput defaultValue={0} step={1}  >
+                        <NumberInputField {...register('prepTime')}/>
+                        <NumberInputStepper>
+                            <NumberIncrementStepper />
+                            <NumberDecrementStepper />
+                        </NumberInputStepper>
+                    </NumberInput>
+                </FormControl>
+                <FormControl
+                    isInvalid = {!!errors?.cooktime?.message}
+                    p = '2'
+                    isRequired
+                    width='50%'
+                >
+                    <FormLabel>Cook time (min)</FormLabel>
+                    <NumberInput defaultValue={0} step={1}>
+                        <NumberInputField {...register('cookTime')}/>
+                        <NumberInputStepper>
+                            <NumberIncrementStepper />
+                            <NumberDecrementStepper />
+                        </NumberInputStepper>
+                    </NumberInput>
+                </FormControl>
+            </HStack>
             <FormControl
                 isInvalid = {!!errors?.ingredients?.message}
                 p = '2'
@@ -105,7 +111,7 @@ const RecipeForm: FC = () => {
                 ml = '2'
                 mt = '4'
                 colorScheme = 'blue'
-                disabled = {!!errors.title || !!errors.category || !!errors.ingredients || !!errors.steps}
+                disabled = { !!errors.title || !!errors.category || !!errors.ingredients || !!errors.steps || !!errors.prepTime || !!errors.cookTime }
             >
                 Submit
             </Button>

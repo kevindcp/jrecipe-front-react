@@ -60,13 +60,26 @@ const RegisterForm: FC = () => {
                     {errors?.password?.message}
                 </FormErrorMessage>
             </FormControl>
+            <FormControl
+                isInvalid = {!!errors?.passwordConfirmation?.message}
+                p = '2'
+                isRequired
+            >
+                <FormLabel>
+                    Confirm password
+                </FormLabel>
+                <Input type='password' placeholder='retype your password' {...register('passwordConfirmation')}/>
+                <FormErrorMessage>
+                    {errors?.passwordConfirmation?.message}
+                </FormErrorMessage>
+            </FormControl>
             <Button 
                 onClick={handleSubmit(onSubmit)}
                 w = '94%'
                 ml = '2'
                 mt = '4'
                 colorScheme = 'blue'
-                disabled = {!!errors.name|| !!errors.email || !!errors.password}
+                disabled = {!!errors.name|| !!errors.email || !!errors.password || !!errors.passwordConfirmation}
             >
                 Sign Up
             </Button>
