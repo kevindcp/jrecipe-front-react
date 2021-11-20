@@ -11,7 +11,7 @@ import { MenuProps } from "../types/menu"
 const Menu: FC <MenuProps> = ({ isOpen, onClose }) => {
   return (
     <>
-      <Drawer placement='left' size='xs' onClose={onClose} isOpen={isOpen}>
+      <Drawer placement='left' onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton/>

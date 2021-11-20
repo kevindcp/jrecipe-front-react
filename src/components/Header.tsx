@@ -19,10 +19,10 @@ import Menu from "./Menu";
 const Header: FC = () =>{
     const { isOpen, onOpen, onClose } = useDisclosure()
     return (
-        <HStack backgroundColor='white' h='80px' w='100%' pos='fixed' zIndex='1' top='0' boxShadow='0 0 6px rgba(0, 0, 0, 1)' spacing={['17%','20%', '30%','40%' ]}>
+        <HStack backgroundColor='white' h='80px' w='100%' pos='fixed' zIndex='1' top='0' boxShadow='0 0 6px rgba(0, 0, 0, 1)' spacing='50vw'>
             <HStack ml='7%'>
                 <Button 
-                    leftIcon={<HamburgerIcon mt='1vh' ml='2vw' h='3vh' w='auto'/>} 
+                    leftIcon={<HamburgerIcon mt='1vh' ml='2vw' h='3vh' w='auto' color='black'/>} 
                     onClick ={onOpen} 
                     h='5vh' w='auto' 
                     backgroundColor='white' 
@@ -32,8 +32,8 @@ const Header: FC = () =>{
                 >
                 </Button>
             </HStack>
-            <Text fontWeight='800'>Jrecipe</Text>
             <Menu isOpen={isOpen} onClose={onClose}/>
+            <Text fontWeight='800' pos='fixed'>Jrecipe</Text>
         </HStack>
     )
 }
