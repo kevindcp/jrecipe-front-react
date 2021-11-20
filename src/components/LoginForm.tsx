@@ -4,12 +4,12 @@ import {
     FormErrorMessage,
     Input, 
     Button,
-} from "@chakra-ui/react";
-import { LoginFormInputs } from "../types/forms";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { validationLogin } from "../validators/forms";
-import { FC } from "react";
+} from '@chakra-ui/react';
+import { LoginFormInputs } from '../types/forms';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { validationLogin } from '../validators/forms';
+import { FC } from 'react';
 
 const LoginForm: FC = () => {
     const { register, handleSubmit , formState: {errors} } = useForm<LoginFormInputs>({ 

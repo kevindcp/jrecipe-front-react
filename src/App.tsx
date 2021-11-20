@@ -1,11 +1,11 @@
-import { Flex, Box, Grid} from "@chakra-ui/layout"
-import CategoryCard from "./components/CategoryCard"
-import Recipe from "./components/Recipe"
-import RecipeCard from "./components/RecipeCard"
-import RecipeForm from "./components/RecipeForm"
-import RegisterForm from "./components/RegisterForm"
-import Header from "./components/Header"
-import Menu from "./components/Menu"
+import { Flex, Box, Grid} from '@chakra-ui/layout'
+import CategoryCard from './components/CategoryCard'
+import Recipe from './components/Recipe'
+import RecipeCard from './components/RecipeCard'
+import RecipeForm from './components/RecipeForm'
+import RegisterForm from './components/RegisterForm'
+import Header from './components/Header'
+import Menu from './components/Menu'
 
 const recipe = {
   id: 1,
@@ -49,8 +49,8 @@ const App = () => {
     <>
     <Header/>
     
-    <Flex justify="center" h="auto" w="100%" align="center" pt='20vh' pb='20vh' zIndex='0'>
-      <Grid columnGap='10px' rowGap='10px' gridAutoFlow='row' templateColumns='repeat(auto-fill, minmax(auto, 300px))' templateRows='repeat(auto-fill,300px)'  h="100%" w='80%' justifyContent='center'>
+    <Flex justify='center' h='auto' w='100%' align='center' pt='20vh' pb='20vh' zIndex='0'>
+      <Grid columnGap='20px' rowGap='20px' gridAutoFlow='row' templateColumns='repeat(auto-fill, minmax(auto, 300px))' h='100%' w='90%' justifyContent='center'>
         <RecipeCard {...recipe}/>
         <RecipeCard {...recipe2}/>
         <RecipeCard {...recipe}/>

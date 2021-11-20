@@ -5,9 +5,9 @@ import {
     DrawerOverlay,
     DrawerContent,
     DrawerCloseButton,
-  } from "@chakra-ui/react"
-import { FC} from "react"
-import { MenuProps } from "../types/menu"
+  } from '@chakra-ui/react'
+import { FC} from 'react'
+import { MenuProps } from '../types/menu'
 const Menu: FC <MenuProps> = ({ isOpen, onClose }) => {
   return (
     <>
@@ -15,7 +15,7 @@ const Menu: FC <MenuProps> = ({ isOpen, onClose }) => {
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton/>
-          <DrawerHeader borderBottomWidth="1px">
+          <DrawerHeader borderBottomWidth='1px'>
             Jrecipe
           </DrawerHeader>
           <DrawerBody>

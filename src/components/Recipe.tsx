@@ -9,12 +9,12 @@ import {
     Text,
     Badge,
     Image
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 import { 
     ChevronRightIcon
 } from '@chakra-ui/icons'
-import { FC } from "react";
-import { Recipe } from "../types/recipes";
+import { FC } from 'react';
+import { Recipe } from '../types/recipes';
 
 const Recipe : FC <Recipe> = ({title, cookTime, prepTime, ingredients, steps, category, image}) => {
     const ingredientList = ingredients.split('/')
@@ -58,7 +58,7 @@ const Recipe : FC <Recipe> = ({title, cookTime, prepTime, ingredients, steps, ca
                     {ingredientList.map( (ingredient, index )=> {
                         return <ListItem key= {index}> 
                                 <HStack alignItems='start'>
-                                    <Box> <ListIcon as={ChevronRightIcon} color="blue.500" /> </Box>
+                                    <Box> <ListIcon as={ChevronRightIcon} color='blue.500' /> </Box>
                                     <Box> <Text w='60vw'> {ingredient} </Text> </Box>
                                 </HStack>
                             </ListItem>
@@ -71,7 +71,7 @@ const Recipe : FC <Recipe> = ({title, cookTime, prepTime, ingredients, steps, ca
                     {stepsList.map( (step, index )=> {
                         return <ListItem key= {index}> 
                                 <HStack alignItems='start'>
-                                   <Box> <ListIcon as={ChevronRightIcon} color="blue.500" /> </Box>
+                                   <Box> <ListIcon as={ChevronRightIcon} color='blue.500' /> </Box>
                                    <Box> <Text w='60vw'>{step} </Text> </Box>
                                 </HStack>
                             </ListItem>

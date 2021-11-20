@@ -5,15 +5,15 @@ import {
     LinkOverlay,
     Badge,
     LinkBox,
-} from "@chakra-ui/react";
-import { FC } from "react";
-import { RecipeCardContent } from "../types/recipes";
+} from '@chakra-ui/react';
+import { FC } from 'react';
+import { RecipeCardContent } from '../types/recipes';
 
 const RecipeCard: FC<RecipeCardContent> = ({title, cookTime, prepTime, category, image, link}) =>{
     return (
-        <LinkBox p="1" borderWidth="1px" rounded="md" h='auto'>
-            <Image src={image} fallbackSrc={'../assets/images/defaultImage.png'} w='100%' h='auto' maxH='200px' minH='200px' rounded='md'/>
-            <Heading size="1.5em" my="2">
+        <LinkBox p='1' borderWidth='1px' rounded='md' h='auto'>
+            <Image src={image} fallbackSrc={'../assets/images/defaultImage.png'} w='100%' h='200px' rounded='md'/>
+            <Heading size='1.5em' my='2'>
                 <LinkOverlay href={link}>
                     {title}
                 </LinkOverlay>

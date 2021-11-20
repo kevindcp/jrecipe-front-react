@@ -1,5 +1,5 @@
 
-import * as yup from "yup"
+import * as yup from 'yup'
 
 const validationRegister = yup.object().shape({
     name: yup.string().required(),

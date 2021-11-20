@@ -11,12 +11,12 @@ import {
     NumberInputStepper,
     NumberIncrementStepper,
     NumberDecrementStepper,
-} from "@chakra-ui/react";
-import { RecipeFormInputs } from "../types/forms";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { validationRecipe } from "../validators/forms";
-import { FC } from "react";
+} from '@chakra-ui/react';
+import { RecipeFormInputs } from '../types/forms';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { validationRecipe } from '../validators/forms';
+import { FC } from 'react';
 
 const RecipeForm: FC = () => {
     const { register, handleSubmit ,formState: {errors}} = useForm({
@@ -48,7 +48,7 @@ const RecipeForm: FC = () => {
                 isRequired
             >
                 <FormLabel>Category</FormLabel>
-                <Select placeholder="Select a category" {...register('category')}>
+                <Select placeholder='Select a category' {...register('category')}>
                     //placeholder for now
                     <option>Sweets</option>
                     <option>Bakery</option>
