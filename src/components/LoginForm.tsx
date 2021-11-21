@@ -4,12 +4,15 @@ import {
     FormErrorMessage,
     Input, 
     Button,
+    Text,
 } from '@chakra-ui/react';
 import { LoginFormInputs } from '../types/forms';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { validationLogin } from '../validators/forms';
 import { FC } from 'react';
+import { Link } from 'react-router-dom'
+import { loginUser } from '../utils/Auth';
 
 const LoginForm: FC = () => {
     const { register, handleSubmit , formState: {errors} } = useForm<LoginFormInputs>({ 
@@ -18,7 +21,14 @@ const LoginForm: FC = () => {
     })
 
     // placeholder
-    const onSubmit = (values: LoginFormInputs) => console.log(values);
+    const onSubmit = async (values: LoginFormInputs) => {
+        try {
+            const token = await loginUser(values)
+        } catch(err) {
+            console.log(err)
+        }
+
+    }
     return (
         <FormControl
         w = {['90vw', '80vw', '70vw', '60vw', '50vw','20vw']}
@@ -56,6 +66,12 @@ const LoginForm: FC = () => {
             >
                 Log In
             </Button>
+            <Text p='5' textAlign='center'>
+                <Link to='/register'>
+                    Don't have an account? 
+                    <span style={{fontWeight:'bolder'}}> Sign Up</span>
+                </Link>
+            </Text>
         </FormControl>
     );
 }

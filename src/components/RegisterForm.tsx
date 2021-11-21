@@ -4,12 +4,15 @@ import {
     FormErrorMessage,
     Input, 
     Button,
+    Text,   
 } from '@chakra-ui/react';
+import { Link} from "react-router-dom";
 import { RegisterFormInputs } from '../types/forms';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { validationRegister } from '../validators/forms';
 import { FC } from 'react';
+import { registerUser } from '../utils/Auth';
 
 const RegisterForm: FC = () => {
     const { register, handleSubmit , formState: {errors} } = useForm<RegisterFormInputs>({ 
@@ -18,9 +21,18 @@ const RegisterForm: FC = () => {
     })
 
     // placeholder
-    const onSubmit = (values: RegisterFormInputs) => console.log(values);
+    const onSubmit = async (values: RegisterFormInputs) => {
+        try{
+            const response = await registerUser(values)
+            console.log(response)
+        } catch (err) { 
+            console.log(err)
+        }
+
+    }
 
     return (
+        <>
         <FormControl
             w = {['90vw', '80vw', '70vw', '60vw', '50vw','20vw']}
             h = {['70vh','50vh']}
@@ -83,7 +95,14 @@ const RegisterForm: FC = () => {
             >
                 Sign Up
             </Button>
+            <Text p='5' textAlign='center'>
+                <Link to='/login'>
+                    Already have an account?
+                    <span style={{fontWeight:'bolder'}}> Log In</span>
+                </Link>
+            </Text>
         </FormControl>
+        </>
     );
 }
 

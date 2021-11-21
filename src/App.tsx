@@ -13,10 +13,11 @@ import LoginPage from './pages/Login'
 import RegisterPage from './pages/Register'
 import AddRecipePage from './pages/AddRecipe'
 import RecipesPage from './pages/Recipes'
+import Router from './router/Router'
 
 const App = () => {
   return (
-    <RecipesPage/>
+    <Router/>
   )
 }
 
