@@ -22,16 +22,17 @@ const section = {
 
 const CategoryPage = () => {
   return (
-    <>
-    <Header/>
     <Flex justify='center' h='auto' w='100%' align='center' pt='5vh' pb='20vh' zIndex='0' flexDirection='column'>
       <SectionHeader {...section}/>
-      <Grid columnGap='1vw' rowGap='1vh' gridAutoFlow='row' templateColumns='repeat(auto-fill, minmax(auto, 300px))' h='100%' w='90%' justifyContent='center'>
+      <Grid columnGap='1vw' rowGap='1vh' gridAutoFlow='row' templateColumns='repeat(auto-fill, minmax(max(300px, 20%), 1fr))' h='100%' w='90%' justifyContent='center'>
+        <RecipeCard {...recipe}/>
+        <RecipeCard {...recipe}/>
+        <RecipeCard {...recipe}/>
+        <RecipeCard {...recipe}/>
         <RecipeCard {...recipe}/>
         <RecipeCard {...recipe}/>
       </Grid>
     </Flex>
-    </>
   )
 }
 

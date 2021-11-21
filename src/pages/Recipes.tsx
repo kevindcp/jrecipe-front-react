@@ -28,8 +28,6 @@ const recipe2 = {
 
 const RecipesPage = () => {
   return (
-    <>
-    <Header/>
     <Flex justify='center' h='auto' w='100%' align='center' pt='8vh' pb='3vh' zIndex='0' flexDirection='column'>
       <SectionHeader name='Recipes'/>
       <Grid columnGap='20px' rowGap='20px' gridAutoFlow='row' templateColumns='repeat(auto-fill, minmax(max(300px, 20%), 1fr))' h='100%' w='90%' justifyContent='center'>
@@ -43,7 +41,6 @@ const RecipesPage = () => {
         <RecipeCard {...recipe2}/>
       </Grid>
     </Flex>
-    </>
   )
 }
 

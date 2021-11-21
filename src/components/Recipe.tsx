@@ -37,6 +37,7 @@ const Recipe : FC <RecipeContent> = ({title, cookTime, prepTime, ingredients, st
                     src = {image} 
                     fallbackSrc= {'../assets/images/defaultImage.png'} 
                     w='100%' h='auto' 
+                    maxH= '68vh'
                     borderRadius='10px'
                 />
             </Box>

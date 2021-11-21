@@ -9,15 +9,16 @@ import { CategoryCardContent } from '../types/category';
 
 const CategoryCard: FC<CategoryCardContent> = ({name, image, link}) =>{
     return (
-            <LinkBox h='400px' borderWidth='1px' rounded='md'>
+            <LinkBox h='auto' borderWidth='1px' rounded='md'>
                 <LinkOverlay href={link} h='auto'>
                     <Image 
                         src={image} 
                         fallbackSrc={'../assets/images/defaultImage.png'} 
-                        w='100%' h='400px' 
+                        w='100%' h='20vh' 
                         top='10%' 
                         rounded='md' 
-                        filter='blur(2px)'
+                        filter='blur(1.5px)'
+                        border ='2px'
                     />
                 </LinkOverlay>
                 <Text 
@@ -28,6 +29,7 @@ const CategoryCard: FC<CategoryCardContent> = ({name, image, link}) =>{
                         color='white' 
                         fontWeight='800' 
                         textShadow='3px 3px black'
+                        h='0'
                 >
                         {name}
                 </Text>

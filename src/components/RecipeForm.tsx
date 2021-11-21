@@ -11,13 +11,17 @@ import {
     NumberInputStepper,
     NumberIncrementStepper,
     NumberDecrementStepper,
-    HStack
+    HStack,
+    Image,
+    Box,
+    Text,
 } from '@chakra-ui/react';
 import { RecipeFormInputs } from '../types/forms';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { validationRecipe } from '../validators/forms';
-import { FC, useState } from 'react';
+import { FC, useState, ChangeEvent } from 'react';
+import { uploadImage } from '../utils/Recipes';
 
 const RecipeForm: FC = () => {
     const { register, handleSubmit ,formState: {errors}} = useForm({
@@ -26,14 +30,36 @@ const RecipeForm: FC = () => {
     })
 
     const onSubmit = async (values: RecipeFormInputs) => {
-        console.log(values)
+        if (values.image[0]) {
+            const imgur = await uploadImage(values.image[0])
+            console.log(values.image[0])
+            console.log(imgur)
+            console.log(values)
+            const request = {...values, image: imgur}
+            console.log(request)
+        } else {
+            const imgur = ''
+            console.log(values.image[0])
+            console.log(imgur)
+            console.log(values)
+            const request = {...values, image: imgur}
+            console.log(request)
+        }
     }
-    const [prepTime, setPrepTime] = useState("0")
-    const [cookTime, setCookTime] = useState("0")
+    const [picture, setPicture] = useState('')
+    const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
+        if (!event || !event.target.files){
+            return
+        }
+        const imageFile: File = event.target.files[0]
+        const imageURL: string = URL.createObjectURL(imageFile)
+        setPicture(imageURL)
+    }
 
     return (
         <FormControl 
-            w = {['90vw', '80vw', '70vw', '60vw', '50vw','20vw']}
+            w = {['90vw', '80vw', '70vw', '60vw', '50vw']}
+            maxW = "600px"
             h = {['70vh','50vh']}
         >
             <FormControl
@@ -105,13 +131,28 @@ const RecipeForm: FC = () => {
                 <Textarea placeholder='Steps' {...register('steps')}/>
                 <FormErrorMessage>{errors?.steps?.message}</FormErrorMessage>
             </FormControl>
+            <FormControl
+                isInvalid = {!!errors?.image?.message}
+                p = '2'
+                isRequired
+            >
+                <FormLabel>Picture</FormLabel>
+                <Input type='file' id='file' hidden accept='image/*' {...register('image')} onChange={handleImageChange}/>
+                <Box align='center'>
+                    <label htmlFor='file'>
+                        <Text fontWeight='400' cursor='pointer' pb='2' hidden={!!picture}> Upload a picture of your recipe</Text>
+                        <Image src={picture} maxW='300px' w='auto' h='auto' maxH='300px' fallbackSrc={'../assets/images/defaultImage.png'} cursor='pointer' />
+                    </label>
+                </Box>
+                <FormErrorMessage>{errors?.image?.message}</FormErrorMessage>
+            </FormControl> 
             <Button 
                 onClick={handleSubmit(onSubmit)}
                 w = '96%'
                 ml = '2'
                 mt = '4'
                 colorScheme = 'blue'
-                disabled = { !!errors.title || !!errors.category || !!errors.ingredients || !!errors.steps || !!errors.prepTime || !!errors.cookTime }
+                disabled = { !!errors.title || !!errors.category || !!errors.ingredients || !!errors.steps || !!errors.prepTime || !!errors.cookTime}
             >
                 Submit
             </Button>

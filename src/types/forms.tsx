@@ -17,4 +17,5 @@ export type RecipeFormInputs = {
     cookTime: number,
     ingredients: string,
     steps: string,
+    image: File,
 }

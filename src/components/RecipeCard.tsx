@@ -11,7 +11,7 @@ import { RecipeCardContent } from '../types/recipes';
 
 const RecipeCard: FC<RecipeCardContent> = ({title, cookTime, prepTime, category, image, link}) =>{
     return (
-        <LinkBox p='1' borderWidth='1px' rounded='md' h='auto'>
+        <LinkBox p='1' borderWidth='1px' rounded='md' h='auto' border =' 10px'>
             <Image 
                 src={image} 
                 fallbackSrc={'../assets/images/defaultImage.png'} 

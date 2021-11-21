@@ -21,13 +21,9 @@ const category2 = {
 
 const CategoriesPage = () => {
   return (
-    <>
-    <Header/>
     <Flex justify='center' h='auto' w='100%' align='center' pt='5vh' pb='20vh' zIndex='0' flexDirection='column'>
       <SectionHeader name='Categories'/>
-      <Grid columnGap='1vw' rowGap='1vh' gridAutoFlow='row' templateColumns='repeat(auto-fill, minmax(auto, 500px))' h='100%' w='90%' justifyContent='center'>
-        <CategoryCard {...category}/>
-        <CategoryCard {...category2}/>
+      <Grid columnGap='1vw' rowGap='1vh' gridAutoFlow='row' templateColumns='repeat(auto-fill, minmax(max(300px, 10%), 1fr))' h='100%' w='90%' justifyContent='center'>
         <CategoryCard {...category}/>
         <CategoryCard {...category2}/>
         <CategoryCard {...category}/>
@@ -38,7 +34,6 @@ const CategoriesPage = () => {
         <CategoryCard {...category2}/>
       </Grid>
     </Flex>
-    </>
   )
 }
 

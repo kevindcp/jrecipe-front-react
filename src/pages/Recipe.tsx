@@ -17,8 +17,7 @@ const recipe = {
 const RecipePage = () => {
   return (
     <>
-    <Header/>
-    <Flex justify='center' h='auto' w='100%' align='center' mt='10vh' pb='10vh' zIndex='0' flexDirection='column'>
+    <Flex justify='center' h='auto' w='100%' align='center' mt='8vh' pb='10vh' zIndex='0' flexDirection='column'>
           <Recipe {...recipe}/>
     </Flex>
     </>
