@@ -1,4 +1,8 @@
 import axios from 'axios'
+import { RecipeFormRequest } from '../types/forms'
+
+// placeholder
+const BASE_URL = 'http://localhost:5000/api/v1'
 
 // This does not work on localhost
 export const uploadImage = async(image: object) => {
@@ -12,6 +16,15 @@ export const uploadImage = async(image: object) => {
         })
         return response.data.data.link
     } catch (err) {
-        return err.message
+        return err.response.data
+    }
+}
+
+export const publishRecipe = async(recipe: RecipeFormRequest) =>{
+    try{
+        const response =  await axios.post( BASE_URL + '/recipes', recipe)
+        return response.data
+    } catch (err) {
+        return err.response.data
     }
 }

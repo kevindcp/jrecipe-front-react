@@ -116,6 +116,21 @@ const RecipeForm: FC = () => {
                 </FormControl>
             </HStack>
             <FormControl
+                isInvalid = {!!errors?.image?.message}
+                p = '2'
+                isRequired
+            >
+                <FormLabel>Picture</FormLabel>
+                <Input type='file' id='file' hidden accept='image/*' {...register('image')} onChange={handleImageChange}/>
+                <Box align='center'>
+                    <label htmlFor='file'>
+                        <Text fontWeight='400' cursor='pointer' pb='2' hidden={!!picture}> Upload a picture of your recipe</Text>
+                        <Image src={picture} maxW='200px' w='auto' h='auto' maxH='200px' fallbackSrc={'../assets/images/defaultImage.png'} cursor='pointer' />
+                    </label>
+                </Box>
+                <FormErrorMessage>{errors?.image?.message}</FormErrorMessage>
+            </FormControl> 
+            <FormControl
                 isInvalid = {!!errors?.ingredients?.message}
                 p = '2'
             >
@@ -131,21 +146,6 @@ const RecipeForm: FC = () => {
                 <Textarea placeholder='Steps' {...register('steps')}/>
                 <FormErrorMessage>{errors?.steps?.message}</FormErrorMessage>
             </FormControl>
-            <FormControl
-                isInvalid = {!!errors?.image?.message}
-                p = '2'
-                isRequired
-            >
-                <FormLabel>Picture</FormLabel>
-                <Input type='file' id='file' hidden accept='image/*' {...register('image')} onChange={handleImageChange}/>
-                <Box align='center'>
-                    <label htmlFor='file'>
-                        <Text fontWeight='400' cursor='pointer' pb='2' hidden={!!picture}> Upload a picture of your recipe</Text>
-                        <Image src={picture} maxW='300px' w='auto' h='auto' maxH='300px' fallbackSrc={'../assets/images/defaultImage.png'} cursor='pointer' />
-                    </label>
-                </Box>
-                <FormErrorMessage>{errors?.image?.message}</FormErrorMessage>
-            </FormControl> 
             <Button 
                 onClick={handleSubmit(onSubmit)}
                 w = '96%'

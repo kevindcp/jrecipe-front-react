@@ -8,8 +8,10 @@ import {
 } from '@chakra-ui/react';
 import { FC } from 'react';
 import { RecipeCardContent } from '../types/recipes';
+import { useNavigate } from 'react-router-dom'
 
 const RecipeCard: FC<RecipeCardContent> = ({title, cookTime, prepTime, category, image, link}) =>{
+    const history= useNavigate()
     return (
         <LinkBox p='1' borderWidth='1px' rounded='md' h='auto' border =' 10px'>
             <Image 
@@ -19,7 +21,7 @@ const RecipeCard: FC<RecipeCardContent> = ({title, cookTime, prepTime, category,
                 rounded='md'
             />
             <Heading size='1.5em' my='2'>
-                <LinkOverlay href={link}>
+                <LinkOverlay onClick = {() => history(link)} cursor='pointer' >
                     {title}
                 </LinkOverlay>
             </Heading>

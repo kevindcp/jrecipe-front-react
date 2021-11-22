@@ -10,24 +10,32 @@ import { LoginFormInputs } from '../types/forms';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { validationLogin } from '../validators/forms';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { Link } from 'react-router-dom'
 import { loginUser } from '../utils/Auth';
+import { useAppDispatch } from '../hooks/redux';
+import { set } from '../redux/user';
+import { useNavigate } from "react-router-dom"
 
 const LoginForm: FC = () => {
+    const history = useNavigate()
+    const dispatch = useAppDispatch()
     const { register, handleSubmit , formState: {errors} } = useForm<LoginFormInputs>({ 
         resolver: yupResolver(validationLogin),
         mode: 'onBlur',
     })
-
+    const [isLoading, setIsLoading] = useState(false)
     // placeholder
     const onSubmit = async (values: LoginFormInputs) => {
-        try {
-            const token = await loginUser(values)
-        } catch(err) {
-            console.log(err)
+        setIsLoading(true)
+        const tokenLog = await loginUser(values)
+        if (typeof tokenLog === "object") {
+            console.log(tokenLog.data)   
+            setIsLoading(false)
+        } else {
+            dispatch(set(tokenLog))
+            history('/')
         }
-
     }
     return (
         <FormControl
@@ -63,6 +71,7 @@ const LoginForm: FC = () => {
                 mt = '4'
                 colorScheme = 'blue'
                 disabled = {!!errors.email || !!errors.password}
+                isLoading = {isLoading}
             >
                 Log In
             </Button>

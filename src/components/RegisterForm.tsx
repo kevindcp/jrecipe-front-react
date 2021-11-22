@@ -11,7 +11,7 @@ import { RegisterFormInputs } from '../types/forms';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { validationRegister } from '../validators/forms';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { registerUser } from '../utils/Auth';
 
 const RegisterForm: FC = () => {
@@ -19,17 +19,15 @@ const RegisterForm: FC = () => {
         resolver: yupResolver(validationRegister),
         mode: 'onBlur',
     })
-
+    
+    const [isLoading, setIsLoading] = useState(false)
     // placeholder
     const onSubmit = async (values: RegisterFormInputs) => {
-        try{
-            const response = await registerUser(values)
-            console.log(response)
-        } catch (err) { 
-            console.log(err)
-        }
+        setIsLoading(true)
+        const response = await registerUser(values)
+        setIsLoading(false)
+        console.log(response)
     }
-
     return (
         <>
         <FormControl
@@ -91,6 +89,7 @@ const RegisterForm: FC = () => {
                 mt = '4'
                 colorScheme = 'blue'
                 disabled = {!!errors.name|| !!errors.email || !!errors.password || !!errors.passwordConfirmation}
+                isLoading = {isLoading}
             >
                 Sign Up
             </Button>

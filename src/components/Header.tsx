@@ -8,12 +8,11 @@ import {
     Flex,
 } from '@chakra-ui/react';
 import { 
-    SearchIcon,
     HamburgerIcon,
     MoonIcon,
     SunIcon,
 } from '@chakra-ui/icons'
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import Menu from './Menu';
 
 const Header: FC = () =>{
