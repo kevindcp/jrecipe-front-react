@@ -7,6 +7,7 @@ export type RecipeContent = {
     steps: string,
     category: string,
     image: string,
+    categoryId: number,
 }
 
 export type RecipeCardContent = {

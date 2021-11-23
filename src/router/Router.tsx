@@ -4,10 +4,12 @@ import LoginPage from "../pages/Login";
 import RegisterPage from "../pages/Register";
 import RecipesPage from "../pages/Recipes";
 import Header from "../components/Header";
-import RecipeFormPage from "../pages/RecipeForm";
 import RecipePage from "../pages/Recipe";
 import CategoryPage from "../pages/Category";
 import { useAppSelector } from "../hooks/redux";
+import SearchPage from "../pages/Search ";
+import RecipeFormPage from "../pages/RecipeForm";
+import NonLoggedHeader from "../components/NonLoggedHeader";
 
 const Router: FC  = () => {
     const { token }  = useAppSelector((state) => state.user)
@@ -15,8 +17,18 @@ const Router: FC  = () => {
         <BrowserRouter>
             <Routes>
                 <Route path='/' element= { token ? <Navigate replace to='/recipes'/> : <Navigate replace to='/login'/>} />
-                <Route path='/login' element={<LoginPage/>} /> 
-                <Route path='/register' element={<RegisterPage/>} /> 
+                <Route path='/login' element={
+                    <>
+                        <NonLoggedHeader/>
+                        <LoginPage/>
+                    </>
+                } /> 
+                <Route path='/register' element={
+                    <>
+                        <NonLoggedHeader/>
+                        <RegisterPage/>
+                    </>
+                } /> 
                 <Route path='/recipes' element={ token ? 
                     <>
                         <Header />
@@ -37,7 +49,14 @@ const Router: FC  = () => {
                         <RecipePage/>
                     </>
                     : <Navigate replace to='/login'/>
-                } />  
+                } /> 
+                <Route path='/recipes/search/:pattern' element={ token ?
+                    <>
+                        <Header />
+                        <SearchPage/>
+                    </>
+                    : <Navigate replace to='/login'/>
+                } /> 
                 <Route path='/categories/:id' element={ token ?
                     <>
                         <Header />

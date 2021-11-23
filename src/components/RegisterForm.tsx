@@ -12,7 +12,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { validationRegister } from '../validators/forms';
 import { FC, useState } from 'react';
-import { registerUser } from '../utils/Auth';
+import { registerUser } from '../services/Auth';
 
 const RegisterForm: FC = () => {
     const { register, handleSubmit , formState: {errors} } = useForm<RegisterFormInputs>({ 

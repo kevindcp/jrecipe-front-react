@@ -4,25 +4,7 @@ import { RecipesState, UpdateRecipe } from '../types/redux'
 import type { RootState } from './store'
 
 const initialState: RecipesState = {
-  recipes: [{
-    id: 1,
-    title: 'Pasta Carbonara',
-    cookTime: 10,
-    prepTime: 30,
-    ingredients: 'ing1/ing2/ing3',
-    steps: 'st1/st2/st3dasssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss das sssssssssssssssssssssssssssssssssssssssssssssssssssssssss asssssssssssssssssssssssssssss adsdk ashdsjkdhs kjhdsssssssssdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdss adsh djksdsdsdsdddddddddddddddsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdd daskjhdskhjdsssssssssssssssssssssss dasjkhhhhhhhhhhhhhhhhhhh asdkjhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh daskjhhhhhhhhhhhhhhhhhhhhh',
-    category: 'Pasta',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/3/33/Espaguetis_carbonara.jpg'
-  }, {
-    id: 2,
-    title: 'Pasta Carboara',
-    cookTime: 10,
-    prepTime: 30,
-    ingredients: 'ing1/ing2/ing3',
-    steps: 'st1/st2/st3dasssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss das sssssssssssssssssssssssssssssssssssssssssssssssssssssssss asssssssssssssssssssssssssssss adsdk ashdsjkdhs kjhdsssssssssdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdss adsh djksdsdsdsdddddddddddddddsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdd daskjhdskhjdsssssssssssssssssssssss dasjkhhhhhhhhhhhhhhhhhhh asdkjhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh daskjhhhhhhhhhhhhhhhhhhhhh',
-    category: 'Pasta',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/3/33/Espaguetis_carbonara.jpg'
-  }],
+  recipes: [],
 }
 
 export const recipesSlice = createSlice({
@@ -44,11 +26,14 @@ export const recipesSlice = createSlice({
         newRecipes[action.payload.index] = action.payload.content
         return { ...state, recipes: newRecipes}
     },
+    setRecipes: (state, action: PayloadAction<Array<RecipeContent>>) => {
+      return {...state, recipes:action.payload}
+    }
   },
 })
 
-export const { add, update, del } = recipesSlice.actions
+export const { add, update, del, setRecipes } = recipesSlice.actions
 
-export const selectCount = (state: RootState) => state.recipes.recipes
+export const selectRecipe = (state: RootState) => state.recipes.recipes
 
 export default recipesSlice.reducer

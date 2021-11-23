@@ -12,7 +12,7 @@ export type LoginFormInputs = {
 
 export type RecipeFormInputs = {
     title: string,
-    category: string,
+    category: number,
     prepTime: number,
     cookTime: number,
     ingredients: string,
@@ -22,7 +22,7 @@ export type RecipeFormInputs = {
 
 export type RecipeFormRequest = {
     title: string,
-    category: string,
+    category: number,
     prepTime: number,
     cookTime: number,
     ingredients: string,

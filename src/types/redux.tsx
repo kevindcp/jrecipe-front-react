@@ -1,3 +1,4 @@
+import { Category } from "./category"
 import { RecipeContent } from "./recipes"
 
 export type UserState = {
@@ -11,4 +12,8 @@ export type RecipesState = {
 export type UpdateRecipe = {
     index: number,
     content: RecipeContent
+}
+
+export type CategoryState = {
+    categories: Array<Category>
 }

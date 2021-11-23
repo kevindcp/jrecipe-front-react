@@ -14,53 +14,59 @@ import {
     HStack,
     Image,
     Box,
-    Text,
     FormHelperText,
 } from '@chakra-ui/react';
 import { RecipeFormInputs } from '../types/forms';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { validationRecipe } from '../validators/forms';
-import { FC, useState, ChangeEvent, useEffect } from 'react';
-import { publishRecipe, uploadImage } from '../services/Recipes';
+import { FC, useState, ChangeEvent } from 'react';
+import { uploadImage } from '../services/Recipes';
 import { useAppDispatch, useAppSelector } from '../hooks/redux';
-import { add } from '../redux/recipes';
-import { useNavigate } from 'react-router-dom'
+import { update } from '../redux/recipes';
+import { useParams } from 'react-router-dom'
+import { RecipeContent } from '../types/recipes';
+import { updateRecipe } from '../services/Recipes';
 
-const RecipeForm: FC = () => {
+const EditRecipeForm: FC = () => {
     const dispatch = useAppDispatch()
-    const history = useNavigate()
+    const { recipes } = useAppSelector(state => state.recipes)
+    const { categories } = useAppSelector(state => state.categories)
+    const { token } = useAppSelector(state => state.user)
+    const { id } = useParams()
+    const recipe:RecipeContent = recipes[Number(id) - 1]
     const { register, handleSubmit ,formState: {errors}} = useForm({
         resolver: yupResolver(validationRecipe),
         mode: 'onBlur'
     })
     const [isLoading, setIsLoading] = useState(false)
-    const { categories } = useAppSelector(state => state.categories)
-    const { token } = useAppSelector(state=>state.user) 
     const onSubmit = async (values: RecipeFormInputs) => {
         setIsLoading(true)
         if (values.image[0]) {
             if (values.image[0].type=== 'image/jpeg' || values.image[0].type === 'image/png'){
-                const imgur = await uploadImage(values.image[0])
-                const request = {...values, category: categories[values.category].id ,image: imgur}
-                const response = await publishRecipe(request, token)
-                const recipe = {...response, category: categories[response.categoryId - 1].name}
-                dispatch(add(recipe))
-                history('/')
+                try{
+                    const imgur = await uploadImage(values.image[0])
+                    const request = {...values, category: categories[values.category].id, image: imgur}
+                    
+                    const response = await updateRecipe( request, token, recipes[Number(id)-1].id)
+                    const recipe = {...response, category: categories[response.categoryId - 1].name}
+                    dispatch(update({index:Number(id)-1 ,content:recipe}))
+                } catch (err) {
+                    console.log(err)
+                }
             } else (
-                console.log('bad format') //placeholder
+                console.log('bad format') 
             )
         } else {
-            const imgur = ''
-            const request = {...values, category: categories[values.category].id ,image: imgur}
-            const response = await publishRecipe(request, token)
+            const request = {...values, category: categories[values.category].id, image: recipes[Number(id)-1].image}
+            const response = await updateRecipe( request, token, recipes[Number(id)-1].id)
             const recipe = {...response, category: categories[response.categoryId - 1].name}
-            dispatch(add(recipe))
-            history('/')
+            dispatch(update({index:Number(id)-1 ,content:recipe}))
         }
         setIsLoading(false)
     }
-    const [picture, setPicture] = useState('')
+                
+    const [picture, setPicture] = useState(recipe.image)
     const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
         if (!event || !event.target.files){
             return
@@ -74,7 +80,7 @@ const RecipeForm: FC = () => {
         <FormControl 
             w = '100%'
             maxW = "600px"
-            h = 'auto'
+            h = '100%'
         >
             <FormControl
                 isInvalid = {!!errors?.title?.message}
@@ -82,7 +88,7 @@ const RecipeForm: FC = () => {
                 isRequired
             >
                 <FormLabel>Title</FormLabel>
-                <Input type='text' placeholder='title' {...register('title')}/>
+                <Input type='text' placeholder='title' {...register('title')} defaultValue={recipe.title}/>
                 <FormErrorMessage>{errors?.title?.message}</FormErrorMessage>
             </FormControl>
             <FormControl
@@ -91,7 +97,7 @@ const RecipeForm: FC = () => {
                 isRequired
             >
                 <FormLabel>Category</FormLabel>
-                <Select placeholder='Select a category' {...register('category')}>
+                <Select placeholder='Select a category' {...register('category')} >
                     {categories.map((category, index) => {
                         return <option key={category.id} value={index}>{category.name} </option>
                     })}
@@ -104,9 +110,9 @@ const RecipeForm: FC = () => {
                     isRequired
                     width='50%'
                 >
-                    <FormLabel>Prep time (min) </FormLabel>
-                    <NumberInput defaultValue={0} step={1}  >
-                        <NumberInputField {...register('prepTime')}/>
+                    <FormLabel>Prep time</FormLabel>
+                    <NumberInput defaultValue={recipe.prepTime} step={1}>
+                        <NumberInputField {...register('prepTime')} />
                         <NumberInputStepper>
                             <NumberIncrementStepper />
                             <NumberDecrementStepper />
@@ -120,9 +126,9 @@ const RecipeForm: FC = () => {
                     isRequired
                     width='50%'
                 >
-                    <FormLabel>Cook time (min)</FormLabel>
-                    <NumberInput defaultValue={0} step={1}>
-                        <NumberInputField {...register('cookTime')}/>
+                    <FormLabel>Cook time</FormLabel>
+                    <NumberInput defaultValue={recipe.cookTime} step={1}>
+                        <NumberInputField  {...register('cookTime')} />
                         <NumberInputStepper>
                             <NumberIncrementStepper />
                             <NumberDecrementStepper />
@@ -136,7 +142,7 @@ const RecipeForm: FC = () => {
                 p = '2'
             >
                 <FormLabel>Ingredients</FormLabel>
-                <Textarea placeholder='ingredients' {...register('ingredients')}/>
+                <Textarea placeholder='ingredients' {...register('ingredients')} defaultValue={recipe.ingredients} />
                 <FormErrorMessage>{errors?.ingredients?.message}</FormErrorMessage>
                 <FormHelperText>Every ingredient must end on a line break.</FormHelperText>
             </FormControl>
@@ -145,10 +151,10 @@ const RecipeForm: FC = () => {
                 p = '2'
             >
                 <FormLabel>Steps</FormLabel>
-                <Textarea placeholder='Steps' {...register('steps')}/>
+                <Textarea placeholder='Steps' {...register('steps')} defaultValue={recipe.steps} />
                 <FormErrorMessage>{errors?.steps?.message}</FormErrorMessage>
                 <FormHelperText>Every step must end on a line break.</FormHelperText>
-            </FormControl>
+            </FormControl> 
             <FormControl
                 isInvalid = {!!errors?.image?.message}
                 p = '2'
@@ -157,7 +163,7 @@ const RecipeForm: FC = () => {
                 <Input type='file' id='file' hidden accept='image/*' {...register('image')} onChange={handleImageChange}/>
                 <Box align='center'>
                     <label htmlFor='file'>
-                        <Image src={picture} maxW='300px' w='auto' h='auto' maxH='300px' fallbackSrc={'../assets/images/defaultImage.png'} cursor='pointer' rounded='10' />
+                        <Image src={picture} maxW='300px' w='auto' h='auto' maxH='300px' fallbackSrc={'../assets/images/defaultImage.png'} cursor='pointer' rounded='10'/>
                     </label>
                 </Box>
                 <FormErrorMessage>{errors?.image?.message}</FormErrorMessage>
@@ -170,7 +176,7 @@ const RecipeForm: FC = () => {
                 mt = '4'
                 colorScheme = 'blue'
                 disabled = { !!errors.title || !!errors.category || !!errors.ingredients || !!errors.steps || !!errors.prepTime || !!errors.cookTime}
-                isLoading={isLoading}
+                isLoading = {isLoading}
             >
                 Submit
             </Button>
@@ -178,4 +184,4 @@ const RecipeForm: FC = () => {
     )
 }
 
-export default RecipeForm
+export default EditRecipeForm

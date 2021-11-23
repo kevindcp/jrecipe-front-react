@@ -12,7 +12,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { validationLogin } from '../validators/forms';
 import { FC, useState } from 'react';
 import { Link } from 'react-router-dom'
-import { loginUser } from '../utils/Auth';
+import { loginUser } from '../services/Auth';
 import { useAppDispatch } from '../hooks/redux';
 import { set } from '../redux/user';
 import { useNavigate } from "react-router-dom"

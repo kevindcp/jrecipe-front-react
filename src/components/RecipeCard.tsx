@@ -13,11 +13,12 @@ import { useNavigate } from 'react-router-dom'
 const RecipeCard: FC<RecipeCardContent> = ({title, cookTime, prepTime, category, image, link}) =>{
     const history= useNavigate()
     return (
-        <LinkBox p='1' borderWidth='1px' rounded='md' h='auto' border =' 10px'>
+        <LinkBox p='1' borderWidth='3px' rounded='md' h='auto'>
             <Image 
                 src={image} 
                 fallbackSrc={'../assets/images/defaultImage.png'} 
                 w='100%' h='25vh' 
+                maxH='300px'
                 rounded='md'
             />
             <Heading size='1.5em' my='2'>

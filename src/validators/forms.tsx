@@ -20,11 +20,7 @@ const validationRecipe = yup.object().shape({
     cookTime: yup.number().required('Cook time is required'),
     ingredients: yup.string(),
     steps: yup.string(),
-    image: yup.mixed().test('type', 'Only the following formats are accepted: .JPEG, .JPG, .PNG', (type) => {
-        return type && (
-            type[0].type === 'image/jpeg' || type[0].type === 'image/png'
-        )
-    }),
+    image: yup.mixed(),
 })
 
 export {validationRegister, validationLogin, validationRecipe}

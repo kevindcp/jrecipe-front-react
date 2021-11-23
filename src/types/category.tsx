@@ -1,6 +1,4 @@
-export type CategoryCardContent = {
+export type Category = {
     id: number,
     name: string,
-    image: string,
-    link:string,
 }
