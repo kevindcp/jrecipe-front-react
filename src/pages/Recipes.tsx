@@ -16,22 +16,13 @@ const RecipesPage = () => {
   const history = useNavigate()
   const dispatch = useAppDispatch()
   useEffect( () => {
-    const catset = async () => {
+    const getData = async () => {
       const categoryList = await getCategories()
-      console.log('list',categoryList)
       dispatch(setCategories(categoryList))
-    }
-    
-    const recset = async () => {
       const recList = await getRecipes(token)
       dispatch(setRecipes(recList))
     }
-    const getData = async () => {
-      await catset()
-      await recset()
-    }
-    getData()
-    
+    getData() 
   }, [])
   return (
     <Flex justify='center' h='auto' w='100%' align='left' pl='10vw' pt='5vh' pb='3vh' zIndex='0' flexDirection='column'>
