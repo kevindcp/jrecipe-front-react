@@ -10,8 +10,8 @@ import { SectionContent } from '../types/section';
 const SectionHeader: FC<SectionContent> = ({name}) =>{
     return (
                 <Heading
-                    align='left'
-                    justify= 'left'
+                    alignSelf='left'
+                    justifySelf= 'left'
                     mt='7vh' mb='5vh'
                     fontSize='3em' 
                     border = '1px black'

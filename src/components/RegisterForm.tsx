@@ -13,20 +13,21 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { validationRegister } from '../validators/forms';
 import { FC, useState } from 'react';
 import { registerUser } from '../services/Auth';
+import { useNavigate } from 'react-router-dom'
 
 const RegisterForm: FC = () => {
     const { register, handleSubmit , formState: {errors} } = useForm<RegisterFormInputs>({ 
         resolver: yupResolver(validationRegister),
         mode: 'onBlur',
     })
-    
+    const history = useNavigate()
     const [isLoading, setIsLoading] = useState(false)
-    // placeholder
     const onSubmit = async (values: RegisterFormInputs) => {
         setIsLoading(true)
         const response = await registerUser(values)
         setIsLoading(false)
         console.log(response)
+        history(`/login`)
     }
     return (
         <>

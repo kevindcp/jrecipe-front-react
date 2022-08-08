@@ -4,10 +4,8 @@ import {
     LinkOverlay,
     LinkBox,
 } from '@chakra-ui/react';
-import { FC } from 'react';
-import { CategoryCardContent } from '../types/category';
 
-const CategoryCard: FC<CategoryCardContent> = ({name, image, link}) =>{
+const CategoryCard = ({name, image, link}) =>{
     return (
             <LinkBox h='auto' borderWidth='1px' rounded='md'>
                 <LinkOverlay href={link} h='auto'>

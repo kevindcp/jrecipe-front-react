@@ -15,7 +15,7 @@ const NonLoggedHeader: FC = () =>{
     const { toggleColorMode, colorMode } = useColorMode()
     return (
         <Flex h='8vh' w='100%' pos='fixed' zIndex='1' top='0' backgroundColor= {colorMode === 'light'? 'white':'gray.800'} dir='column'>
-            <Text fontWeight='800' pl='1vw' pt='1vh' fontSize='2.5em' justify='center' align='center'>Jrecipe</Text>
+            <Text fontWeight='800' pl='1vw' pt='1vh' fontSize='2.5em' justifySelf='center' align='center'>Jrecipe</Text>
             <IconButton 
                 aria-label='night mode' 
                 icon={colorMode === 'light' ? <MoonIcon h='3vh'  mt='9vh' w='auto'/> : <SunIcon h='3vh'  mt='10vh' w='auto'/>} 

@@ -25,7 +25,6 @@ const LoginForm: FC = () => {
         mode: 'onBlur',
     })
     const [isLoading, setIsLoading] = useState(false)
-    // placeholder
     const onSubmit = async (values: LoginFormInputs) => {
         setIsLoading(true)
         const tokenLog = await loginUser(values)
