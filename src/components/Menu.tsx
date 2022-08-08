@@ -6,7 +6,8 @@ import {
     DrawerContent,
     DrawerCloseButton,
     DrawerFooter,
-    Button
+    Button,
+    useMediaQuery
   } from '@chakra-ui/react'
 import { FC} from 'react'
 import { MenuProps } from '../types/menu'
