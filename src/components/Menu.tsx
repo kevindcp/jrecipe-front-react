@@ -6,23 +6,19 @@ import {
     DrawerContent,
     DrawerCloseButton,
     DrawerFooter,
-    Button,
-    useMediaQuery
+    Button
   } from '@chakra-ui/react'
 import { FC} from 'react'
 import { MenuProps } from '../types/menu'
 import { useColorMode } from '@chakra-ui/color-mode'
-import { BiSearchAlt2, BiCategory } from 'react-icons/bi'
+import { BiCategory } from 'react-icons/bi'
 import { FiLogOut } from 'react-icons/fi'
 import { FaRandom, FaHome } from 'react-icons/fa'
-import { VscAdd } from 'react-icons/vsc'
 import { useNavigate } from 'react-router-dom'
 import { random } from '../utils/Random'
 import { useAppSelector, useAppDispatch } from '../hooks/redux'
 import { set } from '../redux/user'
-import CustomModal from './Modal'
-import RecipeForm from './RecipeForm'
-import Searchbar from './SearchBar'
+import { AddRecipeModal, SearchModal } from './Modal'
 
 const Menu: FC <MenuProps> = ({ isOpen, onClose }) => {
   const { recipes } = useAppSelector((state => state.recipes))
@@ -72,29 +68,8 @@ const Menu: FC <MenuProps> = ({ isOpen, onClose }) => {
             >
               Home
             </Button>
-            <CustomModal 
-                leftIcon = {<VscAdd style={{marginRight:40}}/>}
-                w='100%' h='5vh' 
-                bc={colorMode === 'light'? 'white':'gray.700'}  
-                focus={{outline:'none', boxShadow:'none'}}
-                content={<RecipeForm/>}
-                justifyContent='left' 
-                fontSize='1.3em' 
-                mt = '2' mb = '2'  
-                text = 'Add Recipe'
-                header = 'Add Recipe'
-            />
-            <CustomModal 
-                leftIcon = {<BiSearchAlt2 style={{marginRight:40}}/>}
-                w='100%' h='5vh' 
-                bc={colorMode === 'light'? 'white':'gray.700'}  
-                focus={{outline:'none', boxShadow:'none'}}
-                content={<Searchbar onClose={onClose}/>}
-                justifyContent='left' 
-                fontSize='1.3em' 
-                mt = '2' mb = '2'  
-                text = 'Search' 
-            />
+            <AddRecipeModal/>
+            <SearchModal/>
             {recipes.length > 0 && <Button
               w='100%' h='5vh' 
               justifyContent='left' 
